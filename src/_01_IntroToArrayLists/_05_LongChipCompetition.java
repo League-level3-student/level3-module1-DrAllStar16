@@ -1,4 +1,4 @@
-package _01_IntroToArrayLists;
+ package _01_IntroToArrayLists;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +16,9 @@ public class _05_LongChipCompetition {
 
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+		lcc.initializeBeatles();
+        
+	
 	}
 	
 	private void initializeBeatles() {
