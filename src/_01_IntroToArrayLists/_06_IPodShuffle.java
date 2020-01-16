@@ -22,6 +22,10 @@ public class _06_IPodShuffle{
 	}
 	
 	public static void main(String[] args) {
-		new _06_IPodShuffle();
+		new Shuffler().start();
+		
+		
+		
+
 	}
 }
