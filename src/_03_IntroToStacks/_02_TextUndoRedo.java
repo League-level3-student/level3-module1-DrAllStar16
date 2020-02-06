@@ -3,6 +3,7 @@ package _03_IntroToStacks;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,20 +24,36 @@ public class _02_TextUndoRedo implements KeyListener {
 	 * off the Stack and added back to the JLabel.
 	 * 
 	 * */
+	JFrame f;
+	JPanel p;
+	JLabel l;
+	String text;
+	Stack<Character> TextBox = new Stack<Character>();
 	public static void main(String[] args) {
 		_02_TextUndoRedo TextUndoRedo = new _02_TextUndoRedo();
 		TextUndoRedo.makeFrame();
+		TextUndoRedo.makeStringFromStack();
+		
+	
 	}
 	public void makeFrame() {	
-		JFrame f = new JFrame();
-		JPanel p = new JPanel();
-		JLabel l = new JLabel();
+		f = new JFrame();
+		p = new JPanel();
+		l = new JLabel();
 		f.add(p);
 		p.add(l);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		f.pack();
 		f.addKeyListener(this);
+	}
+	public String makeStringFromStack() {
+		text = "";
+		for (int i = 0; i < TextBox.size(); i++) {
+			text += TextBox.get(i);
+		
+		}
+		return text;
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -46,6 +63,22 @@ public class _02_TextUndoRedo implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() != KeyEvent.	VK_BACK_SPACE) {
+			TextBox.push(e.getKeyChar());
+			text="";
+			for (int b = 0; b < TextBox.size(); b++) {
+				text+=TextBox.get(b);
+			}
+			
+			l.setText(text);
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+			TextBox.pop();
+			for (int c = 0; c < TextBox.size(); c++) {
+				text+=TextBox.get(c);
+			}
+			l.setText(makeStringFromStack());
+		}
 		
 
 	}
