@@ -12,31 +12,35 @@ import javax.swing.JPanel;
 import _01_IntroToArrayLists._02_GuestBook;
 
 public class _02_TextUndoRedo implements KeyListener {
-	/* 
+	/*
 	 * Create a JFrame with a JPanel and a JLabel.
 	 * 
-	 * Every time a key is pressed, add that character to the JLabel. It should look like a basic text editor.
+	 * Every time a key is pressed, add that character to the JLabel. It should look
+	 * like a basic text editor.
 	 * 
-	 * Make it so that every time the BACKSPACE key is pressed, the last character is erased from the JLabel.
-	 * Save that deleted character onto a Stack of Characters.
+	 * Make it so that every time the BACKSPACE key is pressed, the last character
+	 * is erased from the JLabel. Save that deleted character onto a Stack of
+	 * Characters.
 	 * 
-	 * Choose a key to be the Undo key. Make it so that when that key is pressed, the top Character is popped 
-	 * off the Stack and added back to the JLabel.
+	 * Choose a key to be the Undo key. Make it so that when that key is pressed,
+	 * the top Character is popped off the Stack and added back to the JLabel.
 	 * 
-	 * */
+	 */
 	JFrame f;
 	JPanel p;
 	JLabel l;
 	String text;
+	char undo;
 	Stack<Character> TextBox = new Stack<Character>();
+
 	public static void main(String[] args) {
 		_02_TextUndoRedo TextUndoRedo = new _02_TextUndoRedo();
 		TextUndoRedo.makeFrame();
 		TextUndoRedo.makeStringFromStack();
-		
-	
+
 	}
-	public void makeFrame() {	
+
+	public void makeFrame() {
 		f = new JFrame();
 		p = new JPanel();
 		l = new JLabel();
@@ -47,14 +51,16 @@ public class _02_TextUndoRedo implements KeyListener {
 		f.pack();
 		f.addKeyListener(this);
 	}
+
 	public String makeStringFromStack() {
 		text = "";
 		for (int i = 0; i < TextBox.size(); i++) {
 			text += TextBox.get(i);
-		
+
 		}
 		return text;
 	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -63,23 +69,29 @@ public class _02_TextUndoRedo implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() != KeyEvent.	VK_BACK_SPACE) {
-			TextBox.push(e.getKeyChar());
-			text="";
-			for (int b = 0; b < TextBox.size(); b++) {
-				text+=TextBox.get(b);
-			}
-			
-			l.setText(text);
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-			TextBox.pop();
+		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			undo = TextBox.pop();
 			for (int c = 0; c < TextBox.size(); c++) {
-				text+=TextBox.get(c);
+				text += TextBox.get(c);
+
 			}
 			l.setText(makeStringFromStack());
 		}
-		
+
+		else if (e.getKeyCode() == KeyEvent.VK_END) {
+			TextBox.push(undo);
+			//text = "";
+			l.setText(makeStringFromStack());
+
+		} else {
+			TextBox.push(e.getKeyChar());
+			text = "";
+			for (int b = 0; b < TextBox.size(); b++) {
+				text += TextBox.get(b);
+			}
+
+			l.setText(text);
+		}
 
 	}
 
