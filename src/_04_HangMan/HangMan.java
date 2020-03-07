@@ -52,7 +52,7 @@ public class HangMan implements KeyListener {
 		}
 		currentWord = words.pop();
 		wordSize = currentWord.length();
-		System.out.println(currentWord);
+		
 	}
 
 	public void makeLabel() {
