@@ -1,7 +1,13 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class _02_LogSearch {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class _02_LogSearch implements KeyListener {
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -29,5 +35,42 @@ public class _02_LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	public static void main(String[] args) {
+		_02_LogSearch logSearch = new _02_LogSearch();
+		logSearch.makingFrame();
+	}
 	
+	public void makingFrame() {
+		JFrame f = new JFrame();
+		JPanel p = new JPanel();
+		JButton b = new JButton();
+		JButton b2 = new JButton();
+		JButton b3 = new JButton();
+		f.add(p);
+		p.add(b);
+		p.add(b2);
+		p.add(b3);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.addKeyListener(this);
+		f.pack();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
