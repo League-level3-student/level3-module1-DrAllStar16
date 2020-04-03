@@ -75,7 +75,7 @@ public class _02_LogSearch implements ActionListener {
 		iid = Integer.parseInt(id);
 		users.put(iid, name);
 	}
-
+	
 	public void buttonTwo() {
 		String enteredId = new String();
 		int newId = 0;
@@ -90,8 +90,8 @@ public class _02_LogSearch implements ActionListener {
 		
 	}
 	public void buttonThree() {
-		for (int i = 1; i < users.size()+1; i++) {
-			JOptionPane.showMessageDialog(null, "NAME: "+ users.get(i)+ " ID: ");
+		for (int id : users.keySet()) {
+			JOptionPane.showMessageDialog(null, "NAME: "+ users.get(id)+ " ID: "+ id);
 		}
 	}
 
